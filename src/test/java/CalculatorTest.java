@@ -1,5 +1,4 @@
 import operations.Operation;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -13,7 +12,7 @@ public class CalculatorTest {
         Operation operation = new Operation(2, 3, '+');
         BigDecimal expectedValue = new BigDecimal("5");
 
-        calculator.calculate(operation);
+        calculator.calculateOperation(operation);
         assertEquals(expectedValue, operation.getResult());
     }
 
@@ -23,7 +22,7 @@ public class CalculatorTest {
         Operation operation = new Operation(2147483647, 2, '+');
         BigDecimal expectedValue = new BigDecimal("2147483649");
 
-        calculator.calculate(operation);
+        calculator.calculateOperation(operation);
         assertEquals(expectedValue, operation.getResult());
     }
 
@@ -33,7 +32,7 @@ public class CalculatorTest {
         Operation operation = new Operation(14, 8, '-');
         BigDecimal expectedValue = new BigDecimal("6");
 
-        calculator.calculate(operation);
+        calculator.calculateOperation(operation);
         assertEquals(expectedValue, operation.getResult());
     }
 
@@ -43,7 +42,7 @@ public class CalculatorTest {
         Operation operation = new Operation(14, -9, '-');
         BigDecimal expectedValue = new BigDecimal("23");
 
-        calculator.calculate(operation);
+        calculator.calculateOperation(operation);
         assertEquals(expectedValue, operation.getResult());
     }
 
@@ -53,7 +52,7 @@ public class CalculatorTest {
         Operation operation = new Operation(7, -2, '*');
         BigDecimal expectedValue = new BigDecimal("-14");
 
-        calculator.calculate(operation);
+        calculator.calculateOperation(operation);
         assertEquals(expectedValue, operation.getResult());
     }
 
@@ -63,7 +62,7 @@ public class CalculatorTest {
         Operation operation = new Operation(10, 5, '/');
         BigDecimal expectedValue = new BigDecimal("2");
 
-        calculator.calculate(operation);
+        calculator.calculateOperation(operation);
         assertEquals(expectedValue, operation.getResult());
     }
 
@@ -73,7 +72,7 @@ public class CalculatorTest {
         Operation operation = new Operation(7, -2, '/');
         BigDecimal expectedValue = new BigDecimal("-3.5");
 
-        calculator.calculate(operation);
+        calculator.calculateOperation(operation);
         assertEquals(expectedValue, operation.getResult());
     }
 
@@ -84,7 +83,7 @@ public class CalculatorTest {
 
         ArithmeticException exception = assertThrows(
                 ArithmeticException.class,
-                () -> calculator.calculate(operation)
+                () -> calculator.calculateOperation(operation)
         );
     }
 }
