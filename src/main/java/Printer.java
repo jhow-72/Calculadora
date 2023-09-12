@@ -8,7 +8,7 @@ public class Printer {
         System.out.println("\n****** Remaining Operations: ******");
 
         if (queue.isEmpty()){
-            System.out.println("the queue is empty");
+            System.out.println("The queue is empty...");
         } else {
             queue.forEach(System.out::println);
         }

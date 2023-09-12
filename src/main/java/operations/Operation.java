@@ -27,6 +27,7 @@ public class Operation {
         return operator;
     }
 
+    // valA e valB sao retornados como BigInteger para podermos fazer operacoes como: 2147483647 + 2
     public BigInteger getValA() {
         return new BigInteger(String.valueOf(valA));
     }
