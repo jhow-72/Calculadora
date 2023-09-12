@@ -13,22 +13,26 @@ public class Calculator {
         OperationStrategy strategy = defineStrategy(operation.getOperator());
 
         if (strategy != null) {
-            try {
-                operation.setResult(strategy.execute(operation.getValA(), operation.getValB()));
-            }
-            catch (ArithmeticException e) {
-                throw e;
-            }
-            catch (Exception e) {
-                logger.error("Unexpected error while trying to execute the operation - " + e.getMessage());
-                throw new RuntimeException("Error while executing operation", e);
-            }
+            calculateOperationBasedOnStrategy(operation, strategy);
         }
         else {
             logger.warn("couldn't determine the operation strategy - setting the result to 0");
             operation.setResult(BigDecimal.ZERO);
         }
         return operation;
+    }
+
+    private static void calculateOperationBasedOnStrategy(Operation operation, OperationStrategy strategy) {
+        try {
+            operation.setResult(strategy.execute(operation.getValA(), operation.getValB()));
+        }
+        catch (ArithmeticException e) {
+            throw e;
+        }
+        catch (Exception e) {
+            logger.error("Unexpected error while trying to execute the operation - " + e.getMessage());
+            throw new RuntimeException("Error while executing operation", e);
+        }
     }
 
     private OperationStrategy defineStrategy(char operator) {
@@ -48,14 +52,14 @@ public class Calculator {
         printer.printRemainingOperations(operationsQueue);
 
         while(!operationsQueue.isEmpty()){
-            Operation operation = operationsQueue.poll();
+            Operation operation = operationsQueue.poll(); // retorna e remove a proxima operacao da fila
             System.out.println("\n-> Current operation: "+operation);
 
             this.calculateOperation(operation);
             System.out.print("-> Result: "+operation+"\n");
             printer.printRemainingOperations(operationsQueue);
 
-            resultsStack.add(operation.getResult());
+            resultsStack.add(operation.getResult()); // adiciona apenas os resultados para serem impressos posteriormente
         }
 
         printer.printStack(resultsStack);
