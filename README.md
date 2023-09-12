@@ -34,3 +34,5 @@ Saída esperada no console:
     - Concluída
 
 Não existe resposta certa ou errada, o objetivo do case é avaliar a linha de raciocínio de cada candidato. Você é livre para fazer na linguagem de sua preferência, desde que aplique as mesmas funcionalidades e tarefas deste case. Dica: Utilize Visual Code ou Visual Studio Community para realizar as tarefas.
+
+-> desafio concluído e pronto para ser apresentado
