@@ -34,4 +34,10 @@ public class Operation {
     public BigInteger getValB() {
         return new BigInteger(String.valueOf(valB));
     }
+
+    @Override
+    public String toString() {
+        String r = result==null ? "X" : result.toString();
+        return String.format("%s %c %s = %s",valA, operator, valB, r);
+    }
 }

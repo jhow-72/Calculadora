@@ -18,23 +18,20 @@ public class Application {
         operationsQueue.add(new Operation(2147483647, 2, '+'));
         operationsQueue.add(new Operation(18, 3, '/'));
         operationsQueue.add(new Operation(15, 2, '/'));
+//        operationsQueue.add(new Operation(10, 0, '/'));
 
         printer.printRemainingOperations(operationsQueue);
 
-
-        Queue<Operation> auxiliaryQueue = new LinkedList<>(operationsQueue);
-
-        operationsQueue.forEach(operation -> {
+        while(!operationsQueue.isEmpty()){
+            Operation operation = operationsQueue.poll();
+            System.out.println("\n-> Current operation: "+operation);
             calculator.calculate(operation);
-
-            System.out.print("\nResult of current operation: ");
-            printer.printOperation(operation);
+            System.out.print("-> Result: "+operation+"\n");
 
             resultsStack.add(operation.getResult());
 
-            auxiliaryQueue.poll();
-            printer.printRemainingOperations(auxiliaryQueue);
-        });
+            printer.printRemainingOperations(operationsQueue);
+        }
 
         printer.printStack(resultsStack);
     }
